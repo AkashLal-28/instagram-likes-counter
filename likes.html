@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+    
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: rgb(33, 19, 31);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .main{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #container {
+      width: 350px;
+      height: 400px;
+      background-color: whitesmoke;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #container img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    #container i {
+      color: rgb(245, 41, 41);
+      font-size: 60px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0); /* scale() used for shifting sizes */
+      opacity: 0;
+      transition: transform 0.6s;
+    }
+
+    #icon i {
+      font-size: 25px;
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <div class="main">
+      <h1>Instagram Likes Counter</h1>
+      <h3>Double tap on image to like</h3>
+      <div id="container">
+        <img src="pic.jpg" alt="" />
+        <i class="ri-heart-fill"></i>
+      </div>
+      <div id="icon">
+        <i id="heart" class="ri-heart-fill"><span id="likes">0</span></i>
+      </div>
+      <div>
+        <h4>Keep tapping to increase the likes</h4>
+        <h5>Tap once on heart to reset</h5>
+      </div>
+    </div>
+    
+    <script>
+      let i = document.querySelector("i");
+      let container = document.querySelector("#container");
+      let likes = document.getElementById("likes");
+      let heart = document.getElementById("heart");
+      let icon = document.getElementById("icon");
+      let clicks = 0;
+      let isIncrementing = true;
+
+      container.addEventListener("dblclick", () => {
+        i.style.transform = "translate(-50%, -50%) scale(1.4)";
+        i.style.opacity = 0.8;
+
+        setTimeout(function () {
+          i.style.opacity = 0;
+        }, 1000);
+        setTimeout(function () {
+          i.style.transform = "translate(-50%, -50%) scale(0)";
+        }, 1200);
+
+        if (isIncrementing) {
+          clicks++;
+          likes.innerText = `${clicks}`;
+          likes.style.color = "white";
+          heart.style.color = "rgb(245, 41, 41)";
+        }
+      });
+      icon.addEventListener("click", () => {
+        clicks = 0
+        likes.innerText = `${clicks}`;
+        heart.style.color = "white";
+      })
+    </script>
+  </body>
+</html>
+
+<!-- <i class="ri-chat-3-fill"></i>
+        <i class="ri-share-forward-fill"></i> -->
